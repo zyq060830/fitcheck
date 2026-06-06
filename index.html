@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FitCheck 口袋私教</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+SC:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="mobile-demo">
+      <div class="phone-shell">
+        <div class="phone-status-bar">
+          <span>9:41</span>
+          <span>FitCheck Demo</span>
+          <span>5G</span>
+        </div>
+
+        <main class="screen-stack">
+          <section id="screen-launch" class="screen active">
+            <div class="launch-card">
+              <p class="hackathon-chip">抖音黑客松 · 赛道二</p>
+              <div class="launch-brand">
+                <h1 class="fit-logo"><span>Fit</span><em>Check</em></h1>
+                <p class="launch-subtitle">口袋私教</p>
+              </div>
+              <div class="launch-illustration">
+                <img src="./assets/coach-shiba-hero.svg" alt="柴教练 Coach Shiba" />
+              </div>
+              <div class="launch-copy">
+                <p>为大体重人群准备的运动起点</p>
+                <p>避开高冲击动作和错误跟练</p>
+                <p>AI 帮你找到更安全、更能坚持的开始方式</p>
+              </div>
+              <button id="start-demo-btn" class="cta-btn">开始使用</button>
+            </div>
+          </section>
+
+          <section id="screen-home" class="screen">
+            <header class="topbar home-topbar">
+              <div>
+                <h2 class="fit-logo small"><span>Fit</span><em>Check</em></h2>
+                <p class="topbar-subtitle">口袋私教</p>
+              </div>
+              <button id="open-settings-btn" class="icon-btn" type="button" aria-label="打开设置">⚙</button>
+            </header>
+
+            <section class="hero-card hero-card-home">
+              <div class="hero-copy">
+                <p class="hero-kicker">大体重友好的口袋私教</p>
+                <h3>避开不适合现在身体状态的动作</h3>
+                <p>把抖音里的健身内容转换成更安全、低冲击、能开始做的训练方案。</p>
+              </div>
+              <img class="hero-mascot hero-mascot-home" src="./assets/coach-shiba-sticker.svg" alt="柴教练" />
+            </section>
+
+            <section class="home-primary-card">
+              <p class="field-title">主入口</p>
+              <h3>贴抖音链接，判断适不适合你</h3>
+              <label class="field-label">
+                抖音链接 / 分享口令 / 文案
+                <textarea id="home-quick-input" rows="4" placeholder="例如：把抖音分享文案贴进来，系统会判断哪些动作不适合大体重人群"></textarea>
+              </label>
+              <div class="inline-actions home-primary-actions">
+                <button id="home-example-btn" class="secondary-action" type="button">填入示例</button>
+                <button id="home-start-parse-btn" class="cta-btn home-main-btn" type="button">开始安全评估</button>
+              </div>
+            </section>
+
+            <section class="home-journey-card">
+              <p class="field-title">主流程</p>
+              <div class="journey-steps compact">
+                <span>1. 看懂视频内容</span>
+                <span>2. 识别高冲击风险</span>
+                <span>3. 替换成低冲击训练</span>
+              </div>
+            </section>
+
+            <section class="home-secondary-row">
+              <button class="feature-card feature-card-min" data-screen-target="plan" type="button">
+                <strong>开始训练</strong>
+                <p>直接去看今天适合练什么</p>
+              </button>
+              <button class="feature-card feature-card-min" data-screen-target="library" type="button">
+                <strong>安全动作库</strong>
+                <p>查看更友好的替代动作</p>
+                <span id="library-badge" class="badge">0</span>
+              </button>
+            </section>
+
+            <p class="disclaimer">内容仅供参考，不构成医疗建议，有基础疾病请咨询医生。</p>
+          </section>
+
+          <section id="screen-compare" class="screen">
+            <header class="topbar">
+              <button class="back-btn" data-back-home type="button">←</button>
+              <div>
+                <h2>安全评估</h2>
+                <p>帮你温和地判断，哪些动作更适合现在开始</p>
+              </div>
+            </header>
+
+            <section class="panel-card">
+              <p class="field-title">贴链接</p>
+              <label class="field-label">
+                抖音链接 / 分享口令 / 文案
+                <textarea id="compare-raw-input" rows="4" placeholder="可粘贴抖音文案、字幕、视频分享内容"></textarea>
+              </label>
+              <div class="inline-actions">
+                <button id="compare-example-btn" class="secondary-action" type="button">填入示例</button>
+                <button id="compare-link-btn" class="cta-btn inline-cta" type="button">开始评估</button>
+              </div>
+              <div id="compare-raw-status" class="helper-text">系统会帮你避开不合适的动作，换成更容易开始的版本。</div>
+              <details class="collapse-card subtle-collapse">
+                <summary>更多导入方式</summary>
+                <div class="collapse-body">
+                  <div class="inline-actions">
+                    <button id="extract-topic-btn" class="secondary-action" type="button">提取议题</button>
+                    <button id="compare-resolve-btn" class="ghost-action" type="button">只导入内容</button>
+                  </div>
+                </div>
+              </details>
+            </section>
+
+            <section class="panel-card parse-status-card">
+              <div class="section-line">
+                <p class="field-title">解析进度</p>
+                <span id="parse-status-text" class="helper-text">等待开始</span>
+              </div>
+              <div class="parse-steps">
+                <div id="parse-step-link" class="parse-step" data-state="idle">
+                  <span class="parse-step-index">1</span>
+                  <div>
+                    <strong>识别链接</strong>
+                    <p>解析分享文本与视频入口</p>
+                  </div>
+                </div>
+                <div id="parse-step-video" class="parse-step" data-state="idle">
+                  <span class="parse-step-index">2</span>
+                  <div>
+                    <strong>获取视频</strong>
+                    <p>优先走本地抖音解析服务</p>
+                  </div>
+                </div>
+                <div id="parse-step-ocr" class="parse-step" data-state="idle">
+                  <span class="parse-step-index">3</span>
+                  <div>
+                    <strong>抽帧 / OCR</strong>
+                    <p>抽取关键画面与文案线索</p>
+                  </div>
+                </div>
+                <div id="parse-step-insight" class="parse-step" data-state="idle">
+                  <span class="parse-step-index">4</span>
+                  <div>
+                    <strong>生成结论</strong>
+                    <p>整理为可用建议与动作信息</p>
+                  </div>
+                </div>
+              </div>
+              <p id="parse-fallback-note" class="helper-text hidden">完整视频解析失败时，会自动退回到只导入内容，至少先完成安全判断。</p>
+            </section>
+
+            <details class="panel-card collapse-card">
+              <summary>补充截图或字幕</summary>
+              <div class="collapse-body">
+                <label class="field-label">
+                  上传视频截图
+                  <input id="ocr-image-input" type="file" accept="image/*" />
+                </label>
+                <div class="inline-actions">
+                  <button id="ocr-btn" class="secondary-action" type="button">识别截图文字</button>
+                  <span id="ocr-status" class="helper-text">没有截图也没关系。</span>
+                </div>
+                <label class="field-label">
+                  字幕 / 讲解文本
+                  <textarea id="transcript-input" rows="4" placeholder="可粘贴字幕、讲解文本，或把 OCR 结果填进来"></textarea>
+                </label>
+                <button id="add-transcript-btn" class="ghost-action block" type="button">把这段字幕加入待分析内容</button>
+              </div>
+            </details>
+
+            <section class="panel-card">
+              <div class="section-line">
+                <p class="field-title">待分析内容</p>
+                <span id="selection-summary" class="helper-text">已选 0 条内容</span>
+              </div>
+              <div id="compare-video-list" class="compare-video-list"></div>
+            </section>
+
+            <section id="post-import-cta" class="panel-card hidden">
+              <p class="field-title">接下来做什么</p>
+              <div class="result-next-actions">
+                <button id="cta-analyze-btn" class="cta-btn" type="button">开始安全判断</button>
+                <button id="cta-library-btn" class="secondary-action" type="button">查看替代动作</button>
+                <button id="cta-plan-btn" class="ghost-action" type="button">生成低冲击计划</button>
+              </div>
+            </section>
+
+            <details class="panel-card collapse-card">
+              <summary>身体状态和热门议题</summary>
+              <div class="collapse-body">
+                <div id="topic-chip-list" class="chip-list">
+                  <button type="button" data-topic-chip="大体重跑跳">大体重跑跳</button>
+                  <button type="button" data-topic-chip="低冲击减脂">低冲击减脂</button>
+                  <button type="button" data-topic-chip="膝盖友好训练">膝盖友好训练</button>
+                  <button type="button" data-topic-chip="大体重力量入门">大体重力量入门</button>
+                  <button type="button" data-topic-chip="跑步伤膝盖">跑步伤膝盖</button>
+                  <button type="button" data-topic-chip="空腹有氧">空腹有氧</button>
+                </div>
+                <div class="double-grid">
+                  <label class="field-label compact">
+                    当前基础
+                    <select id="compare-level">
+                      <option value="新手">新手</option>
+                      <option value="有基础">有一点基础</option>
+                      <option value="进阶">已经能稳定训练</option>
+                    </select>
+                  </label>
+                  <label class="field-label compact">
+                    当前目标
+                    <select id="compare-goal">
+                      <option value="安全起步">安全起步</option>
+                      <option value="低冲击减脂">低冲击减脂</option>
+                      <option value="提升耐力">提升耐力</option>
+                      <option value="改善体态">改善体态</option>
+                    </select>
+                  </label>
+                </div>
+                <div class="double-grid">
+                  <label class="field-label compact">
+                    训练场景
+                    <select id="compare-scene">
+                      <option value="居家">居家</option>
+                      <option value="健身房">健身房</option>
+                      <option value="居家+健身房">居家 + 健身房</option>
+                    </select>
+                  </label>
+                  <label class="field-label compact">
+                    器械条件
+                    <select id="compare-equipment">
+                      <option value="无器械">无器械</option>
+                      <option value="弹力带/小器械">弹力带 / 小器械</option>
+                      <option value="哑铃">哑铃</option>
+                      <option value="器械齐全">器械齐全</option>
+                    </select>
+                  </label>
+                </div>
+                <div class="double-grid">
+                  <label class="field-label compact">
+                    每周训练天数
+                    <select id="compare-days">
+                      <option value="2">2 天</option>
+                      <option value="3">3 天</option>
+                      <option value="4">4 天</option>
+                      <option value="5">5 天</option>
+                    </select>
+                  </label>
+                  <label class="field-label compact">
+                    单次时长
+                    <select id="compare-duration">
+                      <option value="10">10 分钟</option>
+                      <option value="15">15 分钟</option>
+                      <option value="20">20 分钟</option>
+                      <option value="30">30 分钟</option>
+                    </select>
+                  </label>
+                </div>
+                <label class="field-label">
+                  特殊情况
+                  <input id="compare-limitations" type="text" placeholder="例如：膝盖不适、久坐、容易喘、站久会累" />
+                </label>
+              </div>
+            </details>
+
+            <section class="panel-card">
+              <label class="field-label">
+                你的问题
+                <textarea id="compare-topic-input" rows="3" placeholder="例如：女生减脂期到底该先做有氧还是力量？"></textarea>
+              </label>
+              <button id="compare-analyze-btn" class="cta-btn block" type="button">开始判断</button>
+            </section>
+
+            <section id="compare-loading" class="loading-card hidden">
+              <div class="loading-bars">
+                <span></span><span></span><span></span>
+              </div>
+              <p>柴教练正在整理观点...</p>
+            </section>
+
+            <section id="compare-result" class="result-stack hidden">
+              <article class="panel-card">
+                <p class="field-title">你的问题</p>
+                <h3 id="compare-result-topic" class="result-title"></h3>
+              </article>
+              <article class="compare-board">
+                <div class="compare-column">
+                  <span class="column-tag">观点 A</span>
+                  <h4 id="compare-viewa-title"></h4>
+                  <p id="compare-viewa-content"></p>
+                </div>
+                <div class="compare-column">
+                  <span class="column-tag mint">观点 B</span>
+                  <h4 id="compare-viewb-title"></h4>
+                  <p id="compare-viewb-content"></p>
+                </div>
+              </article>
+              <article class="verdict-card">
+                <p class="field-title">柴教练会这样建议你</p>
+                <div id="compare-friendly-summary" class="friendly-summary"></div>
+                <p id="compare-verdict"></p>
+                <p id="compare-recommendation" class="result-secondary-copy"></p>
+                <p id="compare-insight" class="result-secondary-copy"></p>
+                <button id="share-insight-btn" class="secondary-action block" type="button">分享这条洞察</button>
+              </article>
+              <details class="panel-card collapse-card">
+                <summary>展开看原因和替代动作</summary>
+                <div class="collapse-body">
+                  <div id="conflict-card-list" class="conflict-card-list"></div>
+                  <div id="compare-alternative-list" class="alternative-list"></div>
+                  <div class="evidence-block">
+                    <div id="compare-evidence-list" class="evidence-chip-list"></div>
+                    <p id="compare-confidence-note" class="helper-text"></p>
+                  </div>
+                </div>
+              </details>
+              <article class="panel-card">
+                <p class="field-title">下一步</p>
+                <div class="result-next-actions">
+                  <button id="result-go-library-btn" class="secondary-action" type="button">去看替代动作</button>
+                  <button id="result-go-plan-btn" class="ghost-action" type="button">去生成低冲击计划</button>
+                  <button id="copy-result-summary-btn" class="ghost-action" type="button">复制摘要</button>
+                </div>
+              </article>
+            </section>
+          </section>
+
+          <section id="screen-plan" class="screen">
+            <header class="topbar">
+              <button class="back-btn" data-back-home type="button">←</button>
+              <div>
+                <h2>低冲击训练计划</h2>
+                <p>从身体更容易接受的节奏开始安排训练</p>
+              </div>
+            </header>
+
+            <section class="panel-card">
+              <p class="field-title">生成训练</p>
+              <div class="double-grid">
+                <label class="field-label compact">
+                  训练目标
+                  <select id="plan-goal">
+                    <option value="安全起步">安全起步</option>
+                    <option value="低冲击减脂">低冲击减脂</option>
+                    <option value="提升耐力">提升耐力</option>
+                    <option value="改善体态">改善体态</option>
+                  </select>
+                </label>
+                <label class="field-label compact">
+                  当前基础
+                  <select id="plan-level">
+                    <option value="新手">新手</option>
+                    <option value="有基础">有一点基础</option>
+                    <option value="进阶">已经能稳定训练</option>
+                  </select>
+                </label>
+              </div>
+              <div class="double-grid">
+                <label class="field-label compact">
+                  每周训练天数
+                  <select id="plan-days">
+                    <option value="2">2 天</option>
+                    <option value="3">3 天</option>
+                    <option value="4">4 天</option>
+                    <option value="5">5 天</option>
+                  </select>
+                </label>
+                <label class="field-label compact">
+                  单次时长
+                  <select id="plan-duration">
+                    <option value="10">10 分钟</option>
+                    <option value="15">15 分钟</option>
+                    <option value="20">20 分钟</option>
+                    <option value="30">30 分钟</option>
+                  </select>
+                </label>
+              </div>
+              <div class="double-grid">
+                <label class="field-label compact">
+                  训练场景
+                  <select id="plan-scene">
+                    <option value="居家">居家</option>
+                    <option value="健身房">健身房</option>
+                    <option value="居家+健身房">居家 + 健身房</option>
+                  </select>
+                </label>
+                <label class="field-label compact">
+                  器械条件
+                  <select id="plan-equipment">
+                    <option value="无器械">无器械</option>
+                    <option value="弹力带/小器械">弹力带 / 小器械</option>
+                    <option value="哑铃">哑铃</option>
+                    <option value="器械齐全">器械齐全</option>
+                  </select>
+                </label>
+              </div>
+              <label class="field-label">
+                特殊需求（选填）
+                <input id="plan-note" type="text" placeholder="例如：膝盖不舒服、站久会累、怕跑跳、需要坐姿版本" />
+              </label>
+              <button id="generate-plan-btn" class="cta-btn block" type="button">生成我的低冲击计划</button>
+            </section>
+
+            <details class="panel-card collapse-card">
+              <summary>训练模板和候选动作</summary>
+              <div class="collapse-body">
+                <div id="plan-template-list" class="chip-list">
+                  <button type="button" data-plan-template="大体重7天启动">大体重7天启动</button>
+                  <button type="button" data-plan-template="膝盖友好燃脂">膝盖友好燃脂</button>
+                  <button type="button" data-plan-template="居家低冲击">居家低冲击</button>
+                  <button type="button" data-plan-template="久坐激活">久坐激活</button>
+                </div>
+                <section id="plan-queue-panel" class="subtle-panel hidden">
+                  <div class="section-line">
+                    <div>
+                      <p class="field-title">本周候选动作</p>
+                      <p class="helper-text">这些动作会优先用于生成更关节友好的训练计划。</p>
+                    </div>
+                    <button id="clear-plan-queue-btn" class="ghost-action" type="button">清空</button>
+                  </div>
+                  <div id="plan-queue-list" class="plan-queue-list"></div>
+                </section>
+              </div>
+            </details>
+
+            <section id="plan-loading" class="loading-card hidden">
+              <div class="loading-bars">
+                <span></span><span></span><span></span>
+              </div>
+              <p>正在生成你的训练计划...</p>
+            </section>
+
+            <section id="plan-output" class="result-stack hidden"></section>
+            <details id="plan-history-panel" class="panel-card collapse-card hidden">
+              <summary>查看训练历史</summary>
+              <div class="collapse-body">
+                <div id="plan-history-list" class="history-list"></div>
+              </div>
+            </details>
+          </section>
+
+          <section id="screen-library" class="screen">
+            <header class="topbar">
+              <button class="back-btn" data-back-home type="button">←</button>
+              <div>
+                <h2>安全动作库</h2>
+                <p>把更好起步、负担更小的动作留在这里</p>
+              </div>
+            </header>
+
+            <details class="panel-card collapse-card">
+              <summary>从文案识别动作</summary>
+              <div class="collapse-body">
+                <label class="field-label">
+                  粘贴抖音博主文案
+                  <textarea id="library-raw-input" rows="4" placeholder="例如：今天练臀腿，先做深蹲，再做臀桥和罗马尼亚硬拉..."></textarea>
+                </label>
+                <button id="detect-moves-btn" class="cta-btn block" type="button">识别训练动作</button>
+              </div>
+            </details>
+
+            <details class="panel-card collapse-card">
+              <summary>筛选和手动补充</summary>
+              <div class="collapse-body">
+                <div class="section-line">
+                  <div class="inline-actions">
+                    <button id="filter-all-btn" class="secondary-action" type="button">全部</button>
+                    <button id="filter-fav-btn" class="ghost-action" type="button">只看收藏</button>
+                  </div>
+                </div>
+                <label class="field-label compact">
+                  标签筛选
+                  <select id="library-tag-filter"></select>
+                </label>
+                <div class="inline-input">
+                  <input id="manual-move-input" type="text" placeholder="输入动作名，例如：高位下拉" />
+                  <button id="manual-add-btn" class="secondary-action" type="button">添加</button>
+                </div>
+              </div>
+            </details>
+
+            <section id="library-loading" class="loading-card hidden">
+              <div class="loading-bars">
+                <span></span><span></span><span></span>
+              </div>
+              <p>正在识别文案里的训练动作...</p>
+            </section>
+
+            <section id="detected-moves-panel" class="panel-card hidden">
+              <div class="section-line">
+                <p class="field-title">识别结果</p>
+                <button id="save-detected-moves-btn" class="secondary-action" type="button">加入安全动作库</button>
+              </div>
+              <div id="detected-moves-list" class="check-list"></div>
+            </section>
+
+            <section id="library-groups" class="result-stack"></section>
+          </section>
+        </main>
+
+        <div id="settings-sheet" class="settings-sheet hidden">
+          <div class="settings-card">
+            <div class="section-line">
+              <div>
+                <h3>高级设置</h3>
+                <p class="helper-text">本地演示时填写，线上请走后端中转。</p>
+              </div>
+              <button id="close-settings-btn" class="icon-btn" type="button">✕</button>
+            </div>
+            <label class="field-label compact">
+              API Base
+              <input id="api-base" type="text" placeholder="https://api.openai.com/v1" />
+            </label>
+            <label class="field-label compact">
+              模型名
+              <input id="api-model" type="text" placeholder="gpt-4.1-mini" />
+            </label>
+            <label class="field-label compact">
+              API Key
+              <input id="api-key" type="password" placeholder="sk-..." />
+            </label>
+            <label class="field-label compact">
+              ASR 模型
+              <input id="asr-model" type="text" placeholder="gpt-4o-mini-transcribe / whisper-1" />
+            </label>
+            <label class="field-label compact">
+              Douyin API Base
+              <input id="douyin-api-base" type="text" placeholder="http://localhost:2333" />
+            </label>
+            <label class="field-label compact">
+              Douyin API 模式
+              <select id="douyin-api-mode">
+                <option value="auto">自动尝试</option>
+                <option value="hybrid">Hybrid</option>
+                <option value="classic">Classic</option>
+              </select>
+            </label>
+            <label class="field-label compact">
+              Douyin API Key
+              <input id="douyin-api-key" type="password" placeholder="可选" />
+            </label>
+            <button id="save-settings-btn" class="cta-btn block" type="button">保存配置</button>
+            <p id="settings-status" class="helper-text">未配置模型时，页面会自动回退到本地基础逻辑。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>

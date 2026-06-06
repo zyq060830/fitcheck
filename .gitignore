@@ -1,0 +1,8 @@
+.DS_Store
+.venv/
+__pycache__/
+artifacts/
+secrets/
+external/Douyin_TikTok_Download_API/.venv39/
+external/Douyin_TikTok_Download_API/__pycache__/
+external/Douyin_TikTok_Download_API/.DS_Store

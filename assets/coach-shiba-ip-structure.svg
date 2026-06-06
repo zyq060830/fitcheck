@@ -1,0 +1,202 @@
+<svg width="600" height="400" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .shiba-component { visibility: hidden; }
+    .active { visibility: visible; }
+
+    .label {
+      font: 700 11px Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      fill: #6f6253;
+      text-anchor: middle;
+    }
+
+    .body-main { fill: #f4a623; }
+    .body-cream { fill: #fff1d9; }
+    .line { stroke: #2f2a25; stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+    .band { fill: #4ead9d; }
+    .cheek { fill: #f7d8b4; opacity: 0.9; }
+    .accent { fill: #f0a21a; }
+    .dark { fill: #2f2a25; }
+    .mint-stroke { stroke: #4ead9d; stroke-width: 3; fill: none; }
+
+    @keyframes dumbell-lift {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+    #shiba-standing .dumbell {
+      animation: dumbell-lift 3s ease-in-out infinite;
+      transform-origin: 58px 82px;
+    }
+
+    @keyframes glow {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 1; }
+    }
+    #shiba-reviewing .scan-ring {
+      animation: glow 1.5s infinite;
+    }
+
+    @keyframes brow-furrow {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-2px); }
+    }
+    #shiba-thinking .shiba-brow {
+      animation: brow-furrow 2s ease-in-out infinite;
+    }
+
+    @keyframes thumb-wiggle {
+      0%, 100% { transform: rotate(0deg); }
+      50% { transform: rotate(5deg); }
+    }
+    @keyframes spark-fade {
+      0%, 100% { opacity: 0; }
+      50% { opacity: 1; }
+    }
+    #shiba-approving .thumb {
+      animation: thumb-wiggle 0.5s ease-in-out infinite;
+      transform-origin: 76px 86px;
+    }
+    #shiba-approving .sparkle {
+      animation: spark-fade 1s infinite;
+    }
+
+    @keyframes brow-twitch {
+      0%, 50%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-1px); }
+      75% { transform: translateX(1px); }
+    }
+    #shiba-skeptical .shiba-brow {
+      animation: brow-twitch 0.3s infinite;
+    }
+
+    @keyframes eye-star-spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    #shiba-excited .eye-star {
+      animation: eye-star-spin 4s linear infinite;
+      transform-origin: center;
+    }
+    #shiba-excited {
+      animation: bounce 0.6s ease-out infinite;
+    }
+  </style>
+
+  <defs>
+    <g id="shiba-base">
+      <ellipse cx="60" cy="136" rx="34" ry="8" fill="#ead7b7"/>
+      <path class="body-main" d="M42 96C42 76 50 63 60 63C70 63 78 76 78 96V120C78 132 70 142 60 142C50 142 42 132 42 120V96Z"/>
+      <ellipse class="body-cream" cx="60" cy="107" rx="15" ry="23"/>
+      <path class="body-main" d="M43 62L33 36L51 48L43 62Z"/>
+      <path class="body-main" d="M77 62L87 36L69 48L77 62Z"/>
+      <path class="body-cream" d="M45 58L39 44L49 49L45 58Z"/>
+      <path class="body-cream" d="M75 58L81 44L71 49L75 58Z"/>
+      <rect class="band" x="34" y="50" width="52" height="12" rx="6"/>
+      <path d="M53 55L58 59L67 52" stroke="#fffdf8" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle class="body-main" cx="60" cy="74" r="28"/>
+      <ellipse class="body-cream" cx="60" cy="81" rx="21" ry="18"/>
+      <circle class="dark" cx="49" cy="73" r="3.6"/>
+      <circle class="dark" cx="71" cy="73" r="3.6"/>
+      <path class="line shiba-brow" d="M41 67C44 64 47 63 52 64"/>
+      <path class="line shiba-brow" d="M68 64C73 63 76 64 79 67"/>
+      <ellipse class="dark" cx="60" cy="81" rx="4.5" ry="3.8"/>
+      <path class="line" d="M54 88C57 91 63 91 66 88"/>
+      <circle class="cheek" cx="45" cy="84" r="4"/>
+      <circle class="cheek" cx="75" cy="84" r="4"/>
+      <path class="body-main" d="M44 108C35 114 31 122 31 132" stroke="#f4a623" stroke-width="11" stroke-linecap="round"/>
+      <path class="body-main" d="M76 108C85 114 89 122 89 132" stroke="#f4a623" stroke-width="11" stroke-linecap="round"/>
+      <path class="body-main" d="M50 136L47 163" stroke="#f4a623" stroke-width="10" stroke-linecap="round"/>
+      <path class="body-main" d="M70 136L73 163" stroke="#f4a623" stroke-width="10" stroke-linecap="round"/>
+      <path class="line" d="M41 164H52"/>
+      <path class="line" d="M68 164H79"/>
+    </g>
+
+    <g id="dumbbell-shape">
+      <rect x="0" y="0" width="22" height="5" rx="2.5" fill="#2f2a25"/>
+      <rect x="-6" y="-5" width="5" height="14" rx="2" fill="#444"/>
+      <rect x="23" y="-5" width="5" height="14" rx="2" fill="#444"/>
+      <rect x="-10" y="-2" width="4" height="8" rx="1.5" fill="#777"/>
+      <rect x="28" y="-2" width="4" height="8" rx="1.5" fill="#777"/>
+    </g>
+
+    <g id="spark-shape">
+      <path d="M0 -6L2 -2L6 0L2 2L0 6L-2 2L-6 0L-2 -2Z" fill="#f0a21a"/>
+    </g>
+  </defs>
+
+  <g id="shiba-standing" class="shiba-component active" transform="translate(50, 50) scale(0.8)">
+    <title>柴教练 - 标准站立版 (首页)</title>
+    <use href="#shiba-base"/>
+    <g class="dumbell" transform="translate(80 94) rotate(-18)">
+      <use href="#dumbbell-shape"/>
+    </g>
+    <text class="label" x="60" y="190">标准站立版</text>
+  </g>
+
+  <g id="shiba-reviewing" class="shiba-component" transform="translate(250, 50) scale(0.8)">
+    <title>柴教练 - 审核中版 (AI分析)</title>
+    <use href="#shiba-base"/>
+    <circle class="scan-ring mint-stroke" cx="60" cy="82" r="34"/>
+    <path class="mint-stroke" d="M94 100C107 92 115 83 118 70"/>
+    <circle cx="121" cy="67" r="4" fill="#4ead9d"/>
+    <text class="label" x="60" y="190">审核中版</text>
+  </g>
+
+  <g id="shiba-thinking" class="shiba-component" transform="translate(450, 50) scale(0.8)">
+    <title>柴教练 - 思考版 (生成方案)</title>
+    <use href="#shiba-base"/>
+    <ellipse cx="98" cy="51" rx="18" ry="12" fill="#fff"/>
+    <ellipse cx="82" cy="64" rx="6" ry="5" fill="#fff"/>
+    <ellipse cx="76" cy="74" rx="3" ry="3" fill="#fff"/>
+    <text class="label" x="60" y="190">思考版</text>
+  </g>
+
+  <g id="shiba-approving" class="shiba-component" transform="translate(50, 250) scale(0.8)">
+    <title>柴教练 - 点赞版 (推荐结果)</title>
+    <use href="#shiba-base"/>
+    <path class="line" d="M47 72C50 78 53 78 56 72"/>
+    <path class="line" d="M67 88C71 92 77 92 80 88"/>
+    <g class="thumb" transform="translate(84 98)">
+      <path d="M0 15C6 8 9 2 11 -5C13 -11 20 -8 18 -1L16 6H24C29 6 30 13 27 16L18 24C16 26 13 27 10 27H3C1 27 0 25 0 23V15Z" fill="#fff1d9" stroke="#2f2a25" stroke-width="2"/>
+    </g>
+    <g class="sparkle" transform="translate(103 62)">
+      <use href="#spark-shape"/>
+    </g>
+    <text class="label" x="60" y="190">点赞版</text>
+  </g>
+
+  <g id="shiba-skeptical" class="shiba-component" transform="translate(250, 250) scale(0.8)">
+    <title>柴教练 - 不科学版 (质疑)</title>
+    <use href="#shiba-base"/>
+    <path class="line" d="M45 88C50 86 55 86 60 88"/>
+    <path class="line" d="M44 108C53 102 67 102 76 108"/>
+    <path class="line" d="M44 108L78 108"/>
+    <path class="line" d="M28 112C40 105 51 106 60 115"/>
+    <path class="line" d="M92 112C80 105 69 106 60 115"/>
+    <path d="M96 46C103 44 109 47 111 53" class="line"/>
+    <path d="M101 35C108 33 114 36 116 42" class="line"/>
+    <text class="label" x="60" y="190">不科学版</text>
+  </g>
+
+  <g id="shiba-excited" class="shiba-component" transform="translate(450, 250) scale(0.8)">
+    <title>柴教练 - 超兴奋版 (完成)</title>
+    <use href="#shiba-base"/>
+    <g class="eye-star" transform="translate(49 73)">
+      <use href="#spark-shape"/>
+    </g>
+    <g class="eye-star" transform="translate(71 73)">
+      <use href="#spark-shape"/>
+    </g>
+    <path class="line" d="M52 89C57 96 64 96 69 89"/>
+    <g class="confetti">
+      <circle cx="26" cy="36" r="3" fill="#f0a21a"/>
+      <circle cx="88" cy="31" r="3" fill="#4ead9d"/>
+      <circle cx="97" cy="57" r="2.5" fill="#f0a21a"/>
+      <circle cx="19" cy="61" r="2.5" fill="#4ead9d"/>
+    </g>
+    <text class="label" x="60" y="190">超兴奋版</text>
+  </g>
+</svg>

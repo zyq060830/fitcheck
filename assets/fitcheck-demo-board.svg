@@ -1,0 +1,78 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="card-shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#333333" flood-opacity="0.08" />
+      <feDropShadow dx="0" dy="1" stdDeviation="3" flood-color="#333333" flood-opacity="0.04" />
+    </filter>
+  </defs>
+
+  <style>
+    @keyframes canvas-float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+
+    .main-canvas {
+      animation: canvas-float 6s ease-in-out infinite;
+      transform-origin: 600px 400px;
+    }
+
+    @keyframes toggle-glow {
+      0%, 100% { filter: drop-shadow(0 0 2px rgba(78, 173, 157, 0.4)); }
+      50% { filter: drop-shadow(0 0 8px rgba(78, 173, 157, 0.8)); }
+    }
+
+    .ui-toggle {
+      animation: toggle-glow 2s ease-in-out infinite;
+    }
+
+    @keyframes code-glow {
+      0%, 100% { opacity: 0.9; }
+      50% { opacity: 1; }
+    }
+
+    .code-block {
+      animation: code-glow 3s infinite;
+    }
+  </style>
+
+  <rect width="100%" height="100%" fill="#FBF9F4" />
+
+  <g opacity="0.3" stroke="#4EAD9D" stroke-width="0.5" stroke-dasharray="4,4">
+    <path d="M 0,100 L 1200,100 M 0,200 L 1200,200 M 0,300 L 1200,300 M 0,400 L 1200,400 M 0,500 L 1200,500 M 0,600 L 1200,600 M 0,700 L 1200,700" />
+    <path d="M 100,0 L 100,800 M 200,0 L 200,800 M 300,0 L 300,800 M 400,0 L 400,800 M 500,0 L 500,800 M 600,0 L 600,800 M 700,0 L 700,800 M 800,0 L 800,800 M 900,0 L 900,800 M 1000,0 L 1000,800 M 1100,0 L 1100,800" />
+  </g>
+
+  <g class="main-canvas">
+    <image
+      href="http://googleusercontent.com/generated_image_content/0"
+      x="0"
+      y="0"
+      width="1200"
+      height="800"
+      preserveAspectRatio="xMidYMid slice"
+    />
+
+    <rect id="vector-header" x="40" y="30" width="1120" height="80" fill="transparent" cursor="pointer" />
+
+    <g id="state-standing" cursor="pointer">
+      <rect x="40" y="130" width="320" height="520" fill="transparent" />
+    </g>
+
+    <g id="state-reviewing" cursor="pointer">
+      <rect x="380" y="130" width="250" height="300" fill="transparent" />
+    </g>
+
+    <g id="state-thinking" cursor="pointer">
+      <rect x="650" y="130" width="250" height="300" fill="transparent" />
+    </g>
+
+    <g id="state-approving" cursor="pointer">
+      <rect x="920" y="130" width="250" height="300" fill="transparent" />
+    </g>
+
+    <g id="ui-control-panel" class="ui-toggle" cursor="pointer">
+      <rect x="40" y="670" width="320" height="100" fill="transparent" />
+    </g>
+  </g>
+</svg>
